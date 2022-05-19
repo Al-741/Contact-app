@@ -16,6 +16,38 @@ app.config["SQLALCHEMY_TRACK_MODIFICATIONS"]=False
 
 db=SQLAlchemy(app)
 
+@app.route("/contacts", methods=["POST", "GET"])
+def users():
+    if request.method == "GET": 
+        result = Contact.query.all()
+        contacts= []
+        for row in result:
+            conatct = {
+                "id": row.id,
+                "firstname": row.firstname,
+                "lastname": row.lastname,
+                "number": row.number,
+                "email" : row.email,
+                "picture": row.picture,
+                "job":row.job,
+                }
+            contacts.append(conatct)
+        return (jsonify(contacts))
+    
+    if request.method == "POST":
+        data = request.json
+        new_contact = Contact(
+            data["firstname"], 
+            data["lastname"], 
+            data["number"],
+            data["email"],
+            data["picture"],
+            data["job"]
+            )
+        db.session.add(new_contact)
+        db.session.commit()
+        return(Response(status=200))
+
 class Contact(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     firstname = db.Column(db.String(500))
