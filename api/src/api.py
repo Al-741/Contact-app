@@ -1,5 +1,7 @@
 #cree table contact : id, nom, prenom, telephone, addresse, entreprise
 #get post update et delete a faire 
+# Avec SQLAlchey pour requeter un seul element avec un champs (par exemple l'ID), on peut utiliser :
+# User.query.filter_by(id=1)
 
 from email.mime import application
 from flask import Flask, request, jsonify, Response
