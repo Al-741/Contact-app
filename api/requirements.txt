@@ -1,6 +1,10 @@
-Flask
+Cython
 SQLAlchemy
-psycopg2
+graphene-sqlalchemy
+flask
+Flask-GraphQL
 Flask-SQLAlchemy
-Faker 
-request
+graphql-core==3.0.3
+ariadne
+psycopg2
+Faker
