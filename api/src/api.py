@@ -12,6 +12,12 @@ app=Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"]="postgresql://root:root@localhost:5432/contact"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"]=False
 
+
+# from flask import request 
+# result = request.get("https://randomuser.me/api/")  #si return 200 c'est bon
+
+# Contact(result[""])
+
 db=SQLAlchemy(app)
 
 class Contact(db.Model):
@@ -33,6 +39,11 @@ fake = Faker()
 def populate_table():
     for n in range(0, 50):
         new_contact=Contact(fake.first_name(), fake.last_name(), fake.phone_number(), fake.email(), fake.job())
-        nb_app=random.randint(1,4) 
         db.session.add(new_contact)
     db.session.commit()
+
+if __name__ == '__main__':
+    db.drop_all()
+    db.create_all()
+    populate_table()
+    app.run(host="0.0.0.0", port=8080, debug = True)
