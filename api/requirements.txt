@@ -1,10 +1,11 @@
+// installer a part : graphql-core==3.0.3
 Cython
 SQLAlchemy
 graphene-sqlalchemy
 flask
 Flask-GraphQL
 Flask-SQLAlchemy
-graphql-core==3.0.3
 ariadne
 psycopg2
 Faker
+requests
