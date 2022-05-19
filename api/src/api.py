@@ -8,6 +8,7 @@ from faker import Faker
 import random
 import requests
 import json
+#jte hais
 
 app=Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"]="postgresql://root:root@localhost:5432/contact"
