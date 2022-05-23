@@ -1,6 +1,6 @@
+// import logo from './logo.svg';
 import './App.css';
-import Router from './Router'
-import ContactList from './contact_list/contact_list';
+import Router from './components/router';
 
 function App() {
   return (
@@ -11,4 +11,5 @@ function App() {
     </div>
   );
 }
+
 export default App;

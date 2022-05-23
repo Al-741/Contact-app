@@ -1,0 +1,24 @@
+.container {
+    display: flex;
+    padding: 1rem;
+}
+
+img {
+    width: 3rem;
+    border-radius: 10px;
+}
+
+.info {
+    margin-left: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+/* .label {
+
+}
+
+.rating {
+
+} */
