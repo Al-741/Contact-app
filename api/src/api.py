@@ -12,45 +12,7 @@ app.config["SQLALCHEMY_TRACK_MODIFICATIONS"]=False
 
 db=SQLAlchemy(app)
 
-"""@app.route("/contacts", methods=["POST", "GET"])
-def contacts():
-    if request.method == "GET": 
-        result = Contact.query.all()
-        contacts = []
-        for row in result:
-            contact = {
-                "id": row.id,
-                "firstname": row.firstname,
-                "lastname": row.lastname,
-                "phone": row.phone,
-                "email" : row.email,
-                "address" : row.address,
-                "dob" : row.dob,
-                "picture": row.picture,
-                "job":row.job,
-                }
-            contacts.append(contact)
-        print(contacts)
-        return (jsonify(contacts))
-    
-    if request.method == "POST":
-        data = request.json
-        new_contact = Contact(
-            data["firstname"], 
-            data["lastname"], 
-            data["phone"],
-            data["email"],
-            data["address"],
-            data["dob"],
-            data["picture"],
-            data["job"]
-            )
-        db.session.add(new_contact)
-        db.session.commit()
-        return(Response(status=200))
-"""
-
-@app.route("/contacts", method="GET")
+@app.route("/contacts", methods=["GET"])
 def users():
     result = Contact.query.all()
     contacts = []
@@ -69,7 +31,7 @@ def users():
         contacts.append(contact)
     return (jsonify(contacts))
 
-@app.route("/contacts/<id>", method="GET")
+@app.route("/contacts/<id>", methods=["GET"])
 def users_by_contact(id):
     result = Contact.query.filter_by(id=id).first_or_404()
     contacts = []
