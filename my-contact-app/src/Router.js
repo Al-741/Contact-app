@@ -7,8 +7,8 @@ export default function Router() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/"  element={<ContactList />} />
-        <Route path="/contacts/:GET"  element={<ContactInfo />} />
+        <Route path="/" element={<ContactList/>} />
+        <Route path="/contacts/:id" element={<ContactInfo/>} />
       </Routes>
     </BrowserRouter>
   )

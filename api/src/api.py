@@ -1,9 +1,3 @@
-#cree table contact : id, nom, prenom, telephone, addresse, entreprise
-#get post update et delete a faire 
-# Avec SQLAlchey pour requeter un seul element avec un champs (par exemple l'ID), on peut utiliser :
-# User.query.filter_by(id=1)
-
-from email.mime import application
 from flask import Flask, request, jsonify, Response
 from flask_sqlalchemy import SQLAlchemy
 from faker import Faker
@@ -18,22 +12,25 @@ app.config["SQLALCHEMY_TRACK_MODIFICATIONS"]=False
 
 db=SQLAlchemy(app)
 
-@app.route("/contacts", methods=["POST", "GET"])
-def users():
+"""@app.route("/contacts", methods=["POST", "GET"])
+def contacts():
     if request.method == "GET": 
         result = Contact.query.all()
-        contacts= []
+        contacts = []
         for row in result:
-            conatct = {
+            contact = {
                 "id": row.id,
                 "firstname": row.firstname,
                 "lastname": row.lastname,
-                "number": row.number,
+                "phone": row.phone,
                 "email" : row.email,
+                "address" : row.address,
+                "dob" : row.dob,
                 "picture": row.picture,
                 "job":row.job,
                 }
-            contacts.append(conatct)
+            contacts.append(contact)
+        print(contacts)
         return (jsonify(contacts))
     
     if request.method == "POST":
@@ -41,14 +38,54 @@ def users():
         new_contact = Contact(
             data["firstname"], 
             data["lastname"], 
-            data["number"],
+            data["phone"],
             data["email"],
+            data["address"],
+            data["dob"],
             data["picture"],
             data["job"]
             )
         db.session.add(new_contact)
         db.session.commit()
         return(Response(status=200))
+"""
+
+@app.route("/contacts", method="GET")
+def users():
+    result = Contact.query.all()
+    contacts = []
+    for row in result:
+        contact = {
+            "id": row.id,
+            "firstname": row.firstname,
+            "lastname": row.lastname,
+            "phone": row.phone,
+            "email" : row.email,
+            "address" : row.address,
+            "dob" : row.dob,
+            "picture": row.picture,
+            "job":row.job,
+            }
+        contacts.append(contact)
+    return (jsonify(contacts))
+
+@app.route("/contacts/<id>", method="GET")
+def users_by_contact(id):
+    result = Contact.query.filter_by(id=id).first_or_404()
+    contacts = []
+    contact = {
+        "id": result.id,
+        "firstname": result.firstname,
+        "lastname": result.lastname,
+        "phone": result.phone,
+        "email": result.email,
+        "address": result.address,
+        "dob": result.dob,
+        "picture": result.picture,
+        "job": result.job,
+    }
+    contacts.append(contact)
+    return (jsonify(contacts))
 
 class Contact(db.Model):
     id = db.Column(db.Integer, primary_key = True)
@@ -92,9 +129,23 @@ def populate_table():
         db.session.add(new_contact)
     db.session.commit()
 
-@app.route("/")
+"""@app.route("/")
 def say_hello():
-    return "Hello"
+    result = Contact.query.all()
+    contacts = []
+    for row in result:
+        contact = {
+            "id": row.id,
+            "firstname": row.firstname,
+            "lastname": row.lastname,
+            "phone": row.phone,
+            "email": row.email,
+            "address": row.address,
+            "dob": row.dob,
+            "picture": row.picture,
+            "job": row.job,
+        }
+        return contact"""
 
 if __name__ == '__main__':
     db.drop_all()

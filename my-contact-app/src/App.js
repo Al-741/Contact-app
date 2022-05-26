@@ -1,6 +1,5 @@
-// import logo from './logo.svg';
 import './App.css';
-import Router from './components/router';
+import Router from './Router'
 
 function App() {
   return (
@@ -13,3 +12,4 @@ function App() {
 }
 
 export default App;
+
