@@ -92,8 +92,12 @@ def populate_table():
         db.session.add(new_contact)
     db.session.commit()
 
+@app.route("/")
+def say_hello():
+    return "Hello"
+
 if __name__ == '__main__':
     db.drop_all()
     db.create_all()
     populate_table()
-    app.run(host="0.0.0.0", port=8080, debug=True)
+    app.run(host="0.0.0.0", port=8080, debug=True) #le port sur lequel l'api est lu
