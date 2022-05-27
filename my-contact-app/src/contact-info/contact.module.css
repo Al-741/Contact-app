@@ -13,14 +13,14 @@
 button{
     border: #faf9f9;
     background-color: #faf9f9;
-    font-size: 25px;
+    font-size: 18px;
     border-radius: 25px;
 }
 
 button:hover{
     border: #faf9f9;
     background-color: #ced4da;
-    font-size: 25px;
+    font-size: 18px;
     border-radius: 25px;
 }
 
@@ -57,4 +57,11 @@ img {
 .label{
     padding: 0.5em;
     color: #343a40;
+    font-size: 18px;
+}
+
+.title{
+    padding: 0.5em;
+    color: #343a40;
+    font-weight: bold;
 }
