@@ -70,9 +70,9 @@ export default function ContactList() {
         const id = user.id;
         const route = "/contacts/" + id;
         return (
-            <li>
-                <Link to={route}><ContactItem data={user} /></Link>
-            </li>
+            <div>
+                <Link to={route} style={{ textDecoration: 'none' }}><ContactItem data={user} /></Link>
+            </div>
         );
     });
 

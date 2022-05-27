@@ -1,11 +1,13 @@
 .container {
     display: flex;
     padding: 1rem;
+    border: 1px;
 }
 
 img {
     width: 3rem;
-    border-radius: 10px;
+    border-radius: 50%;
+    border-color: #fe5d26;
 }
 
 .info {
@@ -13,4 +15,7 @@ img {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+}
+.label{
+    color: #343a40;
 }

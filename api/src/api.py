@@ -1,5 +1,6 @@
 from flask import Flask, request, jsonify, Response
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import text
 from faker import Faker
 import random
 import requests
@@ -16,7 +17,8 @@ db=SQLAlchemy(app)
 
 @app.route("/contacts", methods=["GET"])
 def users():
-    result = Contact.query.all()
+    sql = text("SELECT * FROM contact ORDER BY lastname ASC NULLS LAST")
+    result = db.engine.execute(sql)
     contacts = []
     for row in result:
         contact = {
@@ -95,7 +97,8 @@ def populate_table():
 
 @app.route("/")
 def say_hello():
-    result = Contact.query.all()
+    sql = text("SELECT * FROM contact ORDER BY lastname ASC NULLS LAST")
+    result = db.engine.execute(sql)
     contacts = []
     for row in result:
         contact = {
@@ -109,7 +112,8 @@ def say_hello():
             "picture": row.picture,
             "job": row.job,
         }
-        return contact
+        contacts.append(contact)
+    return (jsonify(contacts))
 
 if __name__ == '__main__':
     db.drop_all()

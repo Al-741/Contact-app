@@ -45,9 +45,9 @@ export default function ContactInfo() {
     const id = user.id;
     const route = "/contacts/" + id;
     return (
-        <li>
+        <div>
             <ContactItem data={user} />
-        </li>
+        </div>
     );
 });
 
