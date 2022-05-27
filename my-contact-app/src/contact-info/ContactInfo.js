@@ -11,20 +11,23 @@ export default function ContactInfo() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-      fetch("/contacts/"+id, {
+      fetch("http://127.0.0.1:5000/contacts/"+id, {
           method: 'GET',
           headers: {
-              accept: 'application/json'
+              'Accept': 'application/json',
+              'Access-Control-Allow-Credentials': 'true',
+              'Access-Control-Allow-Origin': '*',
+              'Content-Type': 'application/json'
           }
-          })
-          .then(response => {
-              if (response.ok){
-                  return response.json()
+      })
+          .then(r => {
+              if (r.ok){
+                  return r.json()
               }
-              throw response;
+              throw r;
           })
-          .then(data => {
-              setInfo(data);
+          .then(r => {
+              setInfo(r);
           })
           .catch(error => {
               console.error("Error fetching data: ", error);
@@ -36,7 +39,7 @@ export default function ContactInfo() {
   }, []);
 
   if (loading) return "Loading ...";
-  if (error) return "Error!";
+  if (error) return "Toujours pas 🤡";
 
   const items = infos.map(user => {
     const id = user.id;

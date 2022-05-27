@@ -4,11 +4,13 @@ from faker import Faker
 import random
 import requests
 import json
+from flask_cors import CORS
 #jte hais
 
 app=Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"]="postgresql://root:root@localhost:5432/contact"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"]=False
+CORS(app)
 
 db=SQLAlchemy(app)
 
@@ -91,7 +93,7 @@ def populate_table():
         db.session.add(new_contact)
     db.session.commit()
 
-"""@app.route("/")
+@app.route("/")
 def say_hello():
     result = Contact.query.all()
     contacts = []
@@ -107,10 +109,10 @@ def say_hello():
             "picture": row.picture,
             "job": row.job,
         }
-        return contact"""
+        return contact
 
 if __name__ == '__main__':
     db.drop_all()
     db.create_all()
     populate_table()
-    app.run(host="0.0.0.0", port=8080, debug=True) #le port sur lequel l'api est lu
+    app.run(host='0.0.0.0', port=8080, debug=True) #le port sur lequel l'api est lu

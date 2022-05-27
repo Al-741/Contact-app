@@ -8,7 +8,16 @@ export default function ContactList() {
     // Reminder: the difference between a regular variable
     // and a state is when states changes, the component is re-rendered
     // meaning the JSX (HTML) will be too
-    const [contacts, setContacts] = useState(null);
+    const [contacts, setContacts] = useState({
+        firstname: "Jean-loic",
+        lastname: "De Jaeger",
+        phone: "0606060606",
+        email: "cc.cc@gmail.com",
+        address: "Le Bourg, 24360 Étouars",
+        dob: "01/01/2000",
+        picture: "",
+        job: "Programmeur",
+    });
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
@@ -20,11 +29,15 @@ export default function ContactList() {
     // If the second paramter is an empty list (like it's the case in the useEffect hook bellow),
     // annonymous function passed as the first parameter will be executed once the component is rendered
     // It's usually a good place to make API calls.
+
     useEffect(() => {
-        fetch("/contacts", {
+        fetch("http://127.0.0.1:5000/contacts", {
             method: 'GET',
             headers: {
-                accept: 'application/json'
+                'Accept': 'application/json',
+                'Access-Control-Allow-Credentials': 'true',
+                'Access-Control-Allow-Origin': '*',
+                'Content-Type': 'application/json'
             }
             })
             .then(response => {
@@ -37,12 +50,13 @@ export default function ContactList() {
                 setContacts(data);
             })
             .catch(error => {
-                console.error("Error fetching data: ", error);
-                setError(error);
+              console.error("Error fetching data: ", error);
+              setError(error);
             })
             .finally(() => {
                 setLoading(false);
             })
+
     }, []);
 
 
@@ -50,7 +64,7 @@ export default function ContactList() {
     // to a list of <li><Link to={route}><ContactItem data={wine}/></Link></li>
     // This usually how we display lists of items in a React application
     if (loading) return "Loading ...";
-    if (error) return "Error!";
+    if (error) return "Toujours pas 🤡";
 
     const items = contacts.map(user => {
         const id = user.id;
