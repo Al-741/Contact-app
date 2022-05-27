@@ -1,13 +1,12 @@
 .container {
     display: flex;
     padding: 1rem;
-    border: 1px;
+    border-bottom: 0.5px solid #6c757d;
 }
 
 img {
     width: 3rem;
     border-radius: 50%;
-    border-color: #fe5d26;
 }
 
 .info {

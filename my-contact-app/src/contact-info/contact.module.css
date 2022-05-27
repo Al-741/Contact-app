@@ -1,20 +1,60 @@
+.contactPage{
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.buttons{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+button{
+    border: #faf9f9;
+    background-color: #faf9f9;
+    font-size: 25px;
+    border-radius: 25px;
+}
+
+button:hover{
+    border: #faf9f9;
+    background-color: #ced4da;
+    font-size: 25px;
+    border-radius: 25px;
+}
+
 .container {
     display: flex;
     padding: 1rem;
+    flex-direction: column;
+    align-items: center;
 }
 
 img {
     width: 3rem;
     border-radius: 50%;
-    border-color: #fe5d26;
 }
 
 .info {
     margin-left: 1rem;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: space-evenly;
+    text-align: justify;
+    padding: 1rem;
 }
+
+.categories{
+    display: flex;
+    flex-direction: column;
+    border-radius: 25px;
+    border: 2px solid #fffffc;
+    background-color: #fffffc;
+    margin-bottom: 25px;
+}
+
 .label{
+    padding: 0.5em;
     color: #343a40;
 }
